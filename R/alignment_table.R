@@ -2,23 +2,29 @@
 #'
 #' Generate a table of mismatches and indels between one or many query sequences and a subject sequence.
 #'
-#' @param query An object of class XStringSet containing the query sequences.
-#' @param subject An object of class XStringSet containing the subject sequence.
+#' @param query A string or vector of strings or object of class XStringSet containing the query sequences/strings.
+#' @param subject A string or object of class XStringSet containing the subject sequence/strin. Must be of length 1.
+#' @param ... Any additional parameters are passed on to [Biostrings::pairwiseAlignment()]. This allows for adjusting alignment algorithm and parameters.
 #'
 #' @return A list containing tibbles with information on mismatches and indels.
 #'
 #' @examples
-#' query_seq <- DNAStringSet(c("ACCGTACCTGG", "ACCTTGG"))
-#' subject_seq <- DNAStringSet("ACCGTACCGGG")
-#' x <- alignment_table(query_seq, subject_seq)
-#' x
+#' query_seq <- Biostrings::DNAStringSet(c("ACCGTACCTGG", "ACCTTGG"))
+#' subject_seq <- Biostrings::DNAStringSet("ACCGTACCGGG")
+#' alignment_table(query_seq, subject_seq)
+#'
+#' # Works with any string
+#' query_string <- (c("boo", "fizzbuzz"))
+#' subject_string <- "boofizz"
+#' alignment_table(query_string, subject_string)
 #'
 #' @import dplyr
 #' @importFrom Biostrings DNAStringSet AAStringSet pairwiseAlignment mismatchTable width
 #'
 #' @export
 alignment_table <- function(query = XStringSet,
-                            subject = XStringSet){
+                            subject = XStringSet,
+                            ...){
   if(is.null(names(query))){
     names(query) <- paste0("query", 1:length(query))
   }
@@ -28,7 +34,7 @@ alignment_table <- function(query = XStringSet,
 
   all_sequences <- c(query, subject)
 
-  alig <- pairwiseAlignment(all_sequences, subject)
+  alig <- pairwiseAlignment(all_sequences, subject, ...)
 
   ranges <- alig@subject@range %>% as.data.frame()
 

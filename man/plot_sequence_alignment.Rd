@@ -23,10 +23,10 @@ alignment <- alignment_table(q, s)
 plot_sequence_alignment(alignment_tbl = alignment)
 
 # Provide names for query and subject to label the y-axis
-names(query) <- c("Seq1", "Seq2")
-names(subject) <- "reference"
+names(q) <- c("Seq1", "Seq2")
+names(s) <- "reference"
 
-alignment <- alignment_table(query, subject)
+alignment <- alignment_table(q, q)
 plot_sequence_alignment(alignment_tbl = alignment)
 
 

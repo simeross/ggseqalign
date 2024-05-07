@@ -13,10 +13,10 @@
 #' plot_sequence_alignment(alignment_tbl = alignment)
 #'
 #' # Provide names for query and subject to label the y-axis
-#' names(query) <- c("Seq1", "Seq2")
-#' names(subject) <- "reference"
+#' names(q) <- c("Seq1", "Seq2")
+#' names(s) <- "reference"
 #'
-#' alignment <- alignment_table(query, subject)
+#' alignment <- alignment_table(q, q)
 #' plot_sequence_alignment(alignment_tbl = alignment)
 #'
 #'
@@ -25,7 +25,7 @@
 #'
 #' @export
 plot_sequence_alignment <- function(alignment_tbl = alignment_table(query, subject)){
-  out_left <- ggplot(alignment_tbl[["mismatch"]], aes(y = PatternName)) +
+  pl <- ggplot(alignment_tbl[["mismatch"]], aes(y = PatternName)) +
     geom_linerange(aes(xmin = start, xmax = end), stat = "unique") +
     geom_linerange(data = alignment_tbl[["deletions"]],
                  aes(xmin = start-0.5, xmax = end+0.5),
@@ -53,15 +53,14 @@ plot_sequence_alignment <- function(alignment_tbl = alignment_table(query, subje
                  linetype = "dashed", stat = "unique") +
     theme_classic() +
     theme(axis.title = element_blank(),
-          legend.position = "none") +
-    ggtitle(paste(unique(alignment_tbl$clus_name_p)))
+          legend.position = "none")
 
   if(any(!is.na(alignment_tbl[["mismatch"]]$PatternSubstring))){
-    out_left <- out_left + geom_point(aes(x = SubjectStart,
+    pl <- pl + geom_point(aes(x = SubjectStart,
                                           color = PatternSubstring)) +
       geom_text(aes(x = SubjectStart, label = PatternSubstring,
                     color = PatternSubstring),
                 nudge_y = 0.2, hjust = 0.5)
   }
-  return(out_left)
+  return(pl)
 }
