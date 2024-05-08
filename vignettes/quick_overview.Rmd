@@ -1,0 +1,151 @@
+---
+title: "Quickstart Guide to ggseqalign"
+author:
+- name: Simeon Lim Rossmann
+  affiliation: Norwegian University of Life Sciences (NMBU)
+  email: simeon.rossmann@nmbu.no
+package: ggseqalign
+output:
+  BiocStyle::html_document
+abstract: |
+  Provides basic instructions to create minimal visualizations of pairwise alignments from various inputs.
+vignette: |
+  %\VignetteIndexEntry{Quickstart Guide to ggseqalign}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Introduction
+
+Showing small differences between two long strings, such as DNA or AA sequences is challenging, especially in R. Typically, DNA or AA sequence alignments show all characters in a sequence. The package `r Biocpkg("ggmsa")` does this really well and is compatible with ggplot2. However, this is not viable for sequences over a certain length.
+Alternatively, top level visualizations may, for example, represent degree of variation over the length in a line plot, making it possible to gauge how strongly sequences differ, but not the quality of the difference. The intention with this package is to provide a way to visualize sequence alignments over the whole length of arbitrarily long sequences without losing the ability to show small differences, see figure \@ref(fig:showcase).
+
+```{r showcase, fig.cap="Example of ggseqalign visualization. Showcase of the package's capability to highlight differences between long DNA sequences.", echo=FALSE, warning=FALSE, message=FALSE}
+library(Biostrings)
+library(ggseqalign)
+library(ggplot2)
+dna <- readDNAStringSet(system.file("extdata", "dm3_upstream2000.fa.gz",
+                                     package="Biostrings"))
+
+q <- dna[2:4]
+s <- dna[5]
+
+q[1] <- as(replaceLetterAt(q[[1]], c(5, 200, 400), "AGC"),
+             "DNAStringSet")
+q[2] <- as(c(substr(q[[2]], 300, 1500), substr(q[[2]], 1800, 2000)),
+            "DNAStringSet")
+q[3] <- as(replaceAt(q[[3]], 1500,
+              paste(rep("A", 1000), collapse = "")),
+            "DNAStringSet")
+names(q) <- c("mismatches", "deletions", "insertion")
+names(s) <- "reference"
+
+plot_sequence_alignment(alignment_table(q, s)) + 
+   theme(text = element_text(size = 15))
+```
+
+## Installation
+
+`ggseqalign` can be installed from it's original source on GitLab (requires `devtools`)
+```{r installgit, eval = FALSE}
+devtools::install_git("https://gitlab.com/nmbu.no/ipv/lim-rossmann/ggseqalign.git")
+```
+
+Once it becomes available on the devel version of Bioconductor, it can be installed with
+```{r installbioc, eval = FALSE}
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
+BiocManager::install("ggseqalign", version = "devel")
+```
+
+## Basics
+
+This package relies on two core functions, `alignment_table()` and `plot_sequence_alignment()`. The former uses `Biostrings::PairwiseAlignment()` at its core to align one or several query strings to a subject string to parse all information on mismatches, insertions and deletions int a table that is used as the input for plotting with `plot_sequence_alignment()`.
+
+## Hide mismatches
+The plots that `plot_sequence_alignment()` generates can become hard to read if there are too many differences, see fig. \@ref(fig:noisefig). The package allows to hide character mismatches to preserve legibility of structural differences (fig. \@ref(fig:noisefignolab)).
+```{r noisefig, fig.cap="Example of a case where ggseqalign fails. If there are too many differences, the .", echo=FALSE, warning=FALSE}
+# load 
+dna <- Biostrings::readDNAStringSet(system.file("extdata", "dm3_upstream2000.fa.gz",
+                                     package="Biostrings"))
+q <- as(c(substr(dna[[1]], 100, 300)),
+            "DNAStringSet")
+s <- as(c(substr(dna[[2]], 100, 300)),
+            "DNAStringSet")
+names(q) <- c("noisy alignment")
+names(s) <- "reference"
+
+plot_sequence_alignment(alignment_table(q, s)) + 
+  theme(text = element_text(size = 15))
+```
+
+```{r noisefignolab, fig.cap="Hiding mismatches. Hiding character mismatches reduces visual noise if alignments have many character mismatches and preserves structural information.", echo=FALSE, warning=FALSE}
+plot_sequence_alignment(alignment_table(q, s), hide_mismatches = TRUE) + 
+  theme(text = element_text(size = 15))
+```
+### Default below, remove before publishing
+
+# Style macros
+
+*BiocStyle* introduces the following macros for referring to *R* packages:
+
+-   `r Biocpkg("IRanges")`, for *Bioconductor* software, annotation and experiment data packages,
+-   `r CRANpkg("data.table")`, for *R* packages available on CRAN,
+-   `r Githubpkg("rstudio/rmarkdown")`, for *R* packages available on GitHub,
+-   `r Rpackage("MyPkg")`, for *R* packages that are *not* available on *Bioconductor*, CRAN or GitHub.
+
+# Figures
+
+Assign captions to figures in the code chunk option `fig.cap` to automatically number them, and to be able to reference them, see Figure \@ref(fig:plot). The figure label is generated from the code chunk label by prefixing it with `fig:`.
+
+
+
+Small and wide figures can be specified by `fig.small` and `fig.wide` code chunk options.
+
+```{r small, fig.cap="Small figure. A plot produced by a code chunk with option `fig.small = TRUE`.", fig.small=TRUE, echo=FALSE}
+plot(cars)
+```
+
+```{r wide, fig.cap="Wide figure. A plot produced by a code chunk with option `fig.wide = TRUE`.", fig.wide=TRUE, echo=FALSE}
+plot(cars)
+```
+
+# Equations
+
+To number and reference equations, put them in equation environments and assign labels to them, see Equation \@ref(eq:binom).
+
+```{=tex}
+\begin{equation}
+  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
+  (\#eq:binom)
+\end{equation}
+```
+# Tables
+
+Like figures, tables with captions will also be numbered and can be referenced, see Table \@ref(tab:table).
+
+| Fruit   | Price |
+|---------|-------|
+| bananas | 1.2   |
+| apples  | 1.0   |
+| oranges | 2.5   |
+
+: (#tab:table) A simple table. With caption.
+
+# Cross-references
+
+Apart from referencing figures (Section \@ref(figures)), tables (Section \@ref(tables)), and equations (Section \@ref(equations)), you can also use the same syntax to refer to sections by their default labels generated by pandoc.
+
+# Side notes
+
+Footnotes are displayed as side notes on the right margin[^1], which has the advantage that they appear close to the place where they are defined.
+
+[^1]: this is a side note entered as a footnote
+
+# References {.unnumbered}
+
+# Session info
+
+```{r sessionInfo, echo=FALSE}
+sessionInfo()
+```

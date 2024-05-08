@@ -8,7 +8,7 @@
 #' @param subject A string or object of class XStringSet containing the subject
 #' sequence/strin. Must be of length 1.
 #' @param ... Any additional parameters are passed on to
-#' [Biostrings::pairwiseAlignment()]. This allows for adjusting alignment
+#' [pwalign::pairwiseAlignment()]. This allows for adjusting alignment
 #' algorithm and parameters.
 #'
 #' @return A list containing tibbles with information on mismatches and indels.
@@ -24,8 +24,7 @@
 #' alignment_table(query_string, subject_string)
 #'
 #' @import dplyr
-#' @importFrom Biostrings DNAStringSet AAStringSet pairwiseAlignment
-#' mismatchTable width
+#' @importFrom pwalign pairwiseAlignment mismatchTable width
 #'
 #' @export
 alignment_table <- function(query = XStringSet,

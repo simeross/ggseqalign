@@ -14,7 +14,7 @@ containing the query sequences/strings.}
 sequence/strin. Must be of length 1.}
 
 \item{...}{Any additional parameters are passed on to
-\code{\link[Biostrings:pairwiseAlignment]{Biostrings::pairwiseAlignment()}}. This allows for adjusting alignment
+\code{\link[Biostrings:moved_to_pwalign]{Biostrings::pairwiseAlignment()}}. This allows for adjusting alignment
 algorithm and parameters.}
 }
 \value{
