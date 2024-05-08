@@ -26,7 +26,7 @@
 #' pl2
 #'
 #' # Compatible with StringSets from Biostrings
-#' dna <- readDNAStringSet(system.file("extdata", "dm3_upstream2000.fa.gz",
+#' dna <- Biostrings::readDNAStringSet(system.file("extdata", "dm3_upstream2000.fa.gz",
 #'                                     package="Biostrings"))
 #' # The entries dna[2:5] are identical
 #' q <- dna[2:4]
