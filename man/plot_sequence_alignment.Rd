@@ -4,31 +4,73 @@
 \alias{plot_sequence_alignment}
 \title{Plot sequence alignment}
 \usage{
-plot_sequence_alignment(alignment_tbl = alignment_table(query, subject))
+plot_sequence_alignment(
+  alignment_tbl = alignment_table(query, subject),
+  insertion_color = "#21918c",
+  hide_mismatches = FALSE
+)
 }
 \arguments{
-\item{alignment_tbl}{An alignment table containing query and subject information for sequence alignment.}
+\item{alignment_tbl}{An alignment table containing query and subject
+information for sequence alignment. Generated with \code{\link[=alignment_table]{alignment_table()}}.}
+
+\item{insertion_color}{The color to use for indicating insertions in the
+alignment. Default is '#21918c'. Can be any output of \code{colors()} or hex code.}
+
+\item{hide_mismatches}{A logical value indicating whether to hide mismatches
+in the alignment plot. Default is FALSE.}
 }
 \value{
-A ggplot object representing the sequence alignment plot.
+A ggplot object of the sequence alignment plot.
 }
 \description{
-This function generates a sequence alignment plot using ggplot2 based on the input alignment table.
+This function generates a sequence alignment plot using ggplot2 based on the
+input alignment table.
 }
 \examples{
-q <- (c("boo", "fizzbuzz"))
-s <- ("boofizz")
+q <- (c("boo", "fibububuzz", "bozz", "baofuzz"))
+s <- "boofizz"
 
 alignment <- alignment_table(q, s)
-plot_sequence_alignment(alignment_tbl = alignment)
+pl1 <- plot_sequence_alignment(alignment_tbl = alignment)
+pl1
 
-# Provide names for query and subject to label the y-axis
-names(q) <- c("Seq1", "Seq2")
+# Provide names for (some) query and subject elements to label the y-axis
+names(q) <- c("Seq1", NA, "Seq3")
 names(s) <- "reference"
+pl2 <- plot_sequence_alignment(alignment_table(q, s))
+pl2
 
-alignment <- alignment_table(q, q)
-plot_sequence_alignment(alignment_tbl = alignment)
+# Compatible with StringSets from Biostrings
+dna <- readDNAStringSet(system.file("extdata", "dm3_upstream2000.fa.gz",
+                                    package="Biostrings"))
+# The entries dna[2:5] are identical
+q <- dna[2:4]
+s <- dna[5]
+pl3 <- plot_sequence_alignment(alignment_table(q, s))
+pl3
 
+# Let's introduce some SNPs, insertions and deletions
+q[1] <- as(Biostrings::replaceLetterAt(q[[1]], c(5, 200, 400), "AGC"),
+            "DNAStringSet")
+q[2] <- as(c(substr(q[[2]], 300, 1500), substr(q[[2]], 1800, 2000)),
+           "DNAStringSet")
+q[3] <- as(Biostrings::replaceAt(q[[3]], 1500,
+             paste(rep("A", 1000), collapse = "")),
+           "DNAStringSet")
+names(q) <- c("mismatches", "deletions", "insertion")
+names(s) <- substr(names(s)[1], 1, 34)
+
+pl4 <- plot_sequence_alignment(alignment_table(q, s))
+pl4
+
+# Compatible with ggplot2 theming
+pl4 +
+  ylab("Sequence variants") +
+  xlab("Length in bp") +
+  scale_color_viridis_d() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
+        axis.title = element_text())
 
 
 }

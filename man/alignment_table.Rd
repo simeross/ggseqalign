@@ -7,17 +7,22 @@
 alignment_table(query = XStringSet, subject = XStringSet, ...)
 }
 \arguments{
-\item{query}{A string or vector of strings or object of class XStringSet containing the query sequences/strings.}
+\item{query}{A string or vector of strings or object of class XStringSet
+containing the query sequences/strings.}
 
-\item{subject}{A string or object of class XStringSet containing the subject sequence/strin. Must be of length 1.}
+\item{subject}{A string or object of class XStringSet containing the subject
+sequence/strin. Must be of length 1.}
 
-\item{...}{Any additional parameters are passed on to \code{\link[Biostrings:pairwiseAlignment]{Biostrings::pairwiseAlignment()}}. This allows for adjusting alignment algorithm and parameters.}
+\item{...}{Any additional parameters are passed on to
+\code{\link[Biostrings:pairwiseAlignment]{Biostrings::pairwiseAlignment()}}. This allows for adjusting alignment
+algorithm and parameters.}
 }
 \value{
 A list containing tibbles with information on mismatches and indels.
 }
 \description{
-Generate a table of mismatches and indels between one or many query sequences and a subject sequence.
+Generate a table of mismatches and indels between one or many query
+sequences and a subject sequence.
 }
 \examples{
 query_seq <- Biostrings::DNAStringSet(c("ACCGTACCTGG", "ACCTTGG"))
@@ -25,7 +30,7 @@ subject_seq <- Biostrings::DNAStringSet("ACCGTACCGGG")
 alignment_table(query_seq, subject_seq)
 
 # Works with any string
-query_string <- (c("boo", "fizzbuzz"))
+query_string <- c("boo", "fizzbuzz")
 subject_string <- "boofizz"
 alignment_table(query_string, subject_string)
 
