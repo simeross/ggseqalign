@@ -65,3 +65,6 @@ If you come across bugs, please [submit an issue](https://gitlab.com/nmbu.no/ipv
 
 ### License
 This package is licenced under the Artistic License 2.0.
+
+### Credit
+The research and data generation that was a major motivation for me to finally create this package has received funding from the Norwegian Financial Mechanism 2014-2021, [project DivGene: UMO-2019/34/H/NZ9/00559](https://eeagrants.org/archive/2014-2021/projects/PL-Basic%20Research-0012)
