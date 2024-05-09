@@ -60,7 +60,7 @@ pl +
     axis.title = element_text())
 ```
 
-## Bug reports
+### Bug reports
 If you come across bugs, please [submit an issue](https://gitlab.com/nmbu.no/ipv/lim-rossmann/ggseqalign/-/issues)
 
 ### License
