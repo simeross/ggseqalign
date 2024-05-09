@@ -9,11 +9,13 @@ I am currently working on a Bioconductor submission for this package, but it sho
 ### R version 4.4 and above
 `ggseqalign` can be installed from its original source on GitLab (requires `devtools`).
 ```
+install.packages("devtools")
 devtools::install_git("https://gitlab.com/nmbu.no/ipv/lim-rossmann/ggseqalign.git")
 ```
 ### earlier R versions
 If you use any R version older than `4.4.0`, install version 0.1.0 of this package.
 ```
+install.packages("devtools")
 devtools::install_git("https://gitlab.com/nmbu.no/ipv/lim-rossmann/ggseqalign@e1a2e99ee7d079d2e4331bc101382cfebe125fa8")
 ```
 ### Bioconductor
