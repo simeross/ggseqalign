@@ -1,7 +1,7 @@
 <img src="inst/hexlogo/hexlogo.png" alt="ggseqalign hex sticker" width="400"/>
 
 ## Intro
-This is an R package to perform pairwise alignments of strings and plot them in a minimal style that is suitable for strings/sequences of any length. It is compatible with ggplot2 and DNA/AA sequence objects from Biostrings.
+This is an R package to perform pairwise alignments of strings and plot them in a minimal style that is suitable for strings/sequences of any length. It is compatible with ggplot2 and DNA/AA sequence objects from `Biostrings`.
 
 I am currently working on a Bioconductor submission for this package, but it should be usable in its current state.
 
@@ -70,7 +70,7 @@ pl +
 If you come across bugs, please [submit an issue](https://gitlab.com/nmbu.no/ipv/lim-rossmann/ggseqalign/-/issues)
 
 ### License
-This package is licenced under the Artistic License 2.0.
+Artistic License 2.0.
 
 ### Credit
 The research and data generation that was a major motivation for me to finally create this package has received funding from the Norwegian Financial Mechanism 2014-2021, [project DivGene: UMO-2019/34/H/NZ9/00559](https://eeagrants.org/archive/2014-2021/projects/PL-Basic%20Research-0012)
