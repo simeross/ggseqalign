@@ -51,12 +51,8 @@ plot_sequence_alignment(alignment_table(q, s)) +
 devtools::install_git("https://gitlab.com/nmbu.no/ipv/lim-rossmann/ggseqalign.git")
 ```
 
-Once it becomes available on the devel version of Bioconductor, it can be installed with
-```{r installbioc, eval = FALSE}
-if (!requireNamespace("BiocManager", quietly=TRUE))
-    install.packages("BiocManager")
-BiocManager::install("ggseqalign", version = "devel")
-```
+This will be updated for installation instructions from Bioconductor if the submission is successful.
+
 
 ## Basics
 

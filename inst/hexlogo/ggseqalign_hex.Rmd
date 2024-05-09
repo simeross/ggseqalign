@@ -1,0 +1,38 @@
+---
+title: "hex for ggseqalign"
+author: "Simeon Lim Rossmann"
+date: "2024-05-09"
+output: html_document
+---
+This is the code used to generate the hex sticker for gseqalign.
+```{r hex, warning=FALSE}
+library(hexSticker)
+library(ggseqalign)
+
+q <- c("#####g#####g#####s#####e#####q#########################a#####l#####i#####g#####n#####",
+       "#####g#####ga#####l#####i#####g#####n#####",
+       "#####g#####g#####s#####p#####l#####o#####t#####s#####g#####n#####",
+       "#####a#####l#####i#####g#####n#####m#####e#####n#####t#####n#####",
+       "#####g#####g#####s#####m#####i#####n#####i#####m#####a#####l#####")
+
+s <-   "#####g#####g#####s#####e#####q#####a#####l#####i#####g#####n#####"
+
+bg <- "grey92"
+frame <- "#470d60"
+text <- "grey20"
+
+pl <- plot_sequence_alignment(alignment_table(q1, s), insertion_color = frame) + 
+  ggplot2::scale_color_viridis_d(end = 0.7) + theme_transparent() +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank())
+
+pl$layers[[8]]$aes_params$size <- 0.5
+pl$layers[[9]]$position$y <- pl$layers[[9]]$position$y + 0.2
+pl$layers[[2]]$aes_params$colour <- bg
+
+sticker(pl, package="ggseqalign", 
+        s_width = 1.4, s_height = 1, s_x = 1, s_y = 0.85,
+        p_color = text, p_size = 18, p_y = 1.5,
+        h_fill = bg, h_color = frame, h_size = 1.5,
+        filename="hexlogo.png")
+```
