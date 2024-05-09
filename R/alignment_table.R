@@ -24,7 +24,7 @@
 #' alignment_table(query_string, subject_string)
 #'
 #' @import dplyr
-#' @importFrom pwalign pairwiseAlignment mismatchTable width
+#' @importFrom Biostrings pairwiseAlignment mismatchTable width
 #'
 #' @export
 alignment_table <- function(query = XStringSet,
