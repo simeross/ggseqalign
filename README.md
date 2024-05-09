@@ -33,6 +33,8 @@ alignment <- alignment_table(query_strings, subject_string)
 
 plot_sequence_alignment(alignment)
 ```
+<img src="inst/figs/rm_ex1.png" alt="output of the code above" width="400"/>
+
 
 To align DNA or AA sequences from a fasta file, read them in with `Biostrings`
 ```
@@ -47,6 +49,8 @@ alignment <- alignment_table(query_sequences, subject_sequence)
 pl <- plot_sequence_alignment(alignment)
 pl
 ```
+<img src="inst/figs/rm_ex2.png" alt="output of the code above" width="400"/>
+
 
 To style the plot generated above to your own taste, use `ggplot2`, for example:
 ```
@@ -59,6 +63,8 @@ pl +
  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
     axis.title = element_text())
 ```
+<img src="inst/figs/rm_ex3.png" alt="output of the code above" width="400"/>
+
 
 ### Bug reports
 If you come across bugs, please [submit an issue](https://gitlab.com/nmbu.no/ipv/lim-rossmann/ggseqalign/-/issues)

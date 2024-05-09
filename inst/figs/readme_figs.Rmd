@@ -1,0 +1,56 @@
+---
+title: "readme figures"
+author: "Simeon Lim Rossmann"
+date: "2024-05-09"
+output: html_document
+---
+This file contains code to create the figures linked in `README.md`
+```{r}
+library(ggseqalign)
+
+query_strings <- (c("boo", "fibububuzz", "bozz", "baofuzz"))
+subject_string <- "boofizz"
+
+alignment <- alignment_table(query_strings, subject_string)
+
+pl <- plot_sequence_alignment(alignment)
+
+ggsave("rm_ex1.png", pl, width = 4, height = 3)
+
+#To align DNA or AA sequences from a fasta file, read them in with `Biostrings`
+library(Biostrings)
+
+dna <- readDNAStringSet(system.file("extdata", "dm3_upstream2000.fa.gz",
+                                     package="Biostrings"))
+
+q <- dna[2:4]
+s <- dna[5]
+
+q[1] <- as(replaceLetterAt(q[[1]], c(5, 200, 400), "AGC"),
+             "DNAStringSet")
+q[2] <- as(c(substr(q[[2]], 300, 1500), substr(q[[2]], 1800, 2000)),
+            "DNAStringSet")
+q[3] <- as(replaceAt(q[[3]], 1500,
+              paste(rep("A", 1000), collapse = "")),
+            "DNAStringSet")
+names(q) <- c("mismatches", "deletions", "insertion")
+names(s) <- "reference"
+
+pl <- plot_sequence_alignment(alignment_table(q, s))
+
+pl
+
+ggsave("rm_ex2.png", pl, width = 4, height = 3)
+
+#To style the plot generated above to your own taste, use `ggplot2`, for example:
+library(ggplot2)
+ 
+pl <- pl +
+ ylab("Sequence variants") +
+ xlab("Length in bp") +
+ scale_color_viridis_d() +
+ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
+    axis.title = element_text())
+ggsave("rm_ex3.png", pl, width = 4, height = 3)
+
+```
