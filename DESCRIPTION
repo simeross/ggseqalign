@@ -1,7 +1,7 @@
 Package: ggseqalign
 Type: Package
 Title: Minimal Visualization of Sequence Alignments
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: person(
     "Simeon", "Lim Rossmann", 
     email = "simeon.rossmann@nmbu.no", 
@@ -17,12 +17,13 @@ RoxygenNote: 7.3.1
 Roxygen: list(markdown = TRUE)
 biocViews: Alignment, MultipleSequenceAlignment, Software, Visualization
 Depends:
-    R (< 4.4.0)
+    R (>= 4.4.0)
 Imports:
-    Biostrings,
+    pwalign,
     dplyr,
     ggplot2
-Suggests: 
+Suggests:
+    Biostrings, 
     BiocStyle, 
     knitr, 
     rmarkdown
