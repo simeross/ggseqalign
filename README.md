@@ -1,4 +1,4 @@
-![ggseqalign hex sticker](inst/hexlogo/hexlogo.png)
+<img src="inst/hexlogo/hexlogo.png" alt="ggseqalign hex sticker" width="400"/>
 
 ## Intro
 This is an R package to perform pairwise alignments of string and plot them in a minimal style that is suitable for strings/sequences of any length. It is compatible with ggplot2 and DNA/AA sequence objects from Biostrings.

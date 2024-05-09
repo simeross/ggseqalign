@@ -56,7 +56,7 @@ This will be updated for installation instructions from Bioconductor if the subm
 
 ## Basics
 
-This package relies on two core functions, `alignment_table()` and `plot_sequence_alignment()`. The former uses `Biostrings::PairwiseAlignment()` at its core to align one or several query strings to a subject string to parse all information on mismatches, insertions and deletions int a table that is used as the input for plotting with `plot_sequence_alignment()`.
+This package relies on two core functions, `alignment_table()` and `plot_sequence_alignment()`. The former uses `Biostrings::PairwiseAlignment()` at its core to align one or several query strings to a subject string to parse all information on mismatches, insertions and deletions into a table that is used as the input for plotting with `plot_sequence_alignment()`.
 
 ## Hide mismatches
 The plots that `plot_sequence_alignment()` generates can become hard to read if there are too many differences, see fig. \@ref(fig:noisefig). The package allows to hide character mismatches to preserve legibility of structural differences (fig. \@ref(fig:noisefignolab)).
