@@ -7,12 +7,12 @@ I am currently working on a Bioconductor submission for this package, but it sho
 
 ## Installation
 ### R version 4.4 and above
-`ggseqalign` can be installed from it's original source on GitLab (requires `devtools`)
+`ggseqalign` can be installed from its original source on GitLab (requires `devtools`).
 ```
 devtools::install_git("https://gitlab.com/nmbu.no/ipv/lim-rossmann/ggseqalign.git")
 ```
 ### earlier R versions
-If you use any R version older than `4.4.0`, install version 0.1.0 of this package variants
+If you use any R version older than `4.4.0`, install version 0.1.0 of this package.
 ```
 devtools::install_git("https://gitlab.com/nmbu.no/ipv/lim-rossmann/ggseqalign@e1a2e99ee7d079d2e4331bc101382cfebe125fa8")
 ```
