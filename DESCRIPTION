@@ -15,6 +15,7 @@ License: Artistic-2.0
 Encoding: UTF-8
 RoxygenNote: 7.3.1
 Roxygen: list(markdown = TRUE)
+biocViews: Alignment, MultipleSequenceAlignment, Software, Visualization
 Imports:
     pwalign,
     dplyr,
@@ -24,7 +25,6 @@ Suggests:
     BiocStyle, 
     knitr, 
     rmarkdown
-biocViews: Alignment, MultipleSequenceAlignment, Software, Visualization
 URL: https://gitlab.com/nmbu.no/ipv/lim-rossmann/ggseqalign
 BugReports: https://gitlab.com/nmbu.no/ipv/lim-rossmann/ggseqalign/-/issues
 VignetteBuilder: knitr
