@@ -45,7 +45,11 @@ alignment_table <- function(query = XStringSet,
   all_sequences <- c(query, subject)
   alig <- pairwiseAlignment(all_sequences, subject, ...)
 
-  ranges <- alig@subject@range %>% as.data.frame()
+  ranges <- alig@subject@range %>% 
+    as.data.frame()
+  p_starts <- alig@pattern@range %>% 
+    as.data.frame() %>% 
+    .$start
 
   #Extract insertions first to use in "end" adjustment for mismatches
   insertions <- alig@subject@indel %>% as.data.frame() %>%
@@ -67,7 +71,8 @@ alignment_table <- function(query = XStringSet,
             tibble(PatternId = 1:length(names(all_sequences)),
                      PatternName = names(all_sequences),
                      PatternLength = width(all_sequences),
-                     ranges), by = join_by(PatternId)) %>%
+                     ranges,
+                   alig_start = p_starts), by = join_by(PatternId)) %>%
     # start and end need to be adjusted so that each character is of width 1
     # centered on its number, e.g. character 4 is from 3.5-4.5
     mutate(start = start - 0.5,
@@ -87,8 +92,12 @@ alignment_table <- function(query = XStringSet,
     mutate(PatternName = factor(PatternName,
                                 levels = c(names(subject),
                                            names(query)))) %>%
+    # adjust end to extend over subject
     mutate(end = ifelse(end < (PatternLength-sum(insertions$width)+start),
                         (PatternLength-sum(insertions$width)+start), end)) %>%
+    # adjust start to extend before subject
+    mutate(start = ifelse(alig_start > 1, start-alig_start, start)) %>% 
+    select(-alig_start) %>% 
     unique() %>%
     mutate(feature = "mismatch")
 
