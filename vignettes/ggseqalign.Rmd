@@ -72,10 +72,10 @@ plot_sequence_alignment(alignment_table(q, s)) +
 
 # Installation
 
-`ggseqalign` can be installed from it's original source on GitLab 
+`ggseqalign` can be installed from it's original source on GitHub 
 (requires `devtools`)
 ```{r installgit, eval = FALSE}
-devtools::install_git("https://gitlab.com/nmbu.no/ipv/lim-rossmann/ggseqalign.git")
+devtools::install_git("https://github.com/simeross/ggseqalign.git")
 ```
 
 This will be updated for installation instructions from Bioconductor if the 

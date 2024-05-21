@@ -27,6 +27,6 @@ Suggests:
     BiocStyle, 
     knitr, 
     rmarkdown
-URL: https://gitlab.com/nmbu.no/ipv/lim-rossmann/ggseqalign
-BugReports: https://gitlab.com/nmbu.no/ipv/lim-rossmann/ggseqalign/-/issues
+URL: https://github.com/simeross/ggseqalign
+BugReports: https://github.com/simeross/ggseqalign/issues
 VignetteBuilder: knitr
