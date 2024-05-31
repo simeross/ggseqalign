@@ -23,10 +23,12 @@ Imports:
     dplyr,
     ggplot2
 Suggests:
-    Biostrings, 
-    BiocStyle, 
-    knitr, 
-    rmarkdown
+    Biostrings,
+    BiocStyle,
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
 URL: https://github.com/simeross/ggseqalign
 BugReports: https://github.com/simeross/ggseqalign/issues
 VignetteBuilder: knitr
+Config/testthat/edition: 3
