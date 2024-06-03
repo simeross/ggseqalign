@@ -1,5 +1,10 @@
 ## Changes in version 0.99.1
 
+* Changes addressing pre-release 
+(reviewer comments)[https://github.com/Bioconductor/Contributions/issues/3437#issuecomment-2145689092]
+
+## Changes in version 0.99.0
+
 * Submission to Bioconductor
 
 ## Changes in version 0.2.0

@@ -8,6 +8,7 @@ This is the code used to generate the hex sticker for gseqalign.
 ```{r hex, warning=FALSE}
 library(hexSticker)
 library(ggseqalign)
+library(ggplot2)
 
 q <- c("#####g#####g#####s#####e#####q#########################a#####l#####i#####g#####n#####",
        "#####g#####ga#####l#####i#####g#####n#####",
@@ -21,7 +22,7 @@ bg <- "grey92"
 frame <- "#470d60"
 text <- "grey20"
 
-pl <- plot_sequence_alignment(alignment_table(q1, s), insertion_color = frame) + 
+pl <- plot_sequence_alignment(alignment_table(q, s), insertion_color = frame) + 
   ggplot2::scale_color_viridis_d(end = 0.7) + theme_transparent() +
   theme(axis.text = element_blank(),
         axis.ticks = element_blank())

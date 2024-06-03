@@ -45,7 +45,8 @@ pl2
 library(Biostrings)
 
 dna <- readDNAStringSet(system.file("extdata", "dm3_upstream2000.fa.gz",
-                                    package="Biostrings"))
+    package = "Biostrings"
+))
 # The entries dna[2:5] are identical
 q <- dna[2:4]
 s <- dna[5]
@@ -53,13 +54,21 @@ pl3 <- plot_sequence_alignment(alignment_table(q, s))
 pl3
 
 # Let's introduce some SNPs, insertions and deletions
-q[1] <- as(replaceLetterAt(q[[1]], c(5, 200, 400), "AGC"),
-            "DNAStringSet")
-q[2] <- as(c(substr(q[[2]], 300, 1500), substr(q[[2]], 1800, 2000)),
-           "DNAStringSet")
-q[3] <- as(replaceAt(q[[3]], 1500,
-             paste(rep("A", 1000), collapse = "")),
-           "DNAStringSet")
+q[1] <- as(
+    replaceLetterAt(q[[1]], c(5, 200, 400), "AGC"),
+    "DNAStringSet"
+)
+q[2] <- as(
+    c(substr(q[[2]], 300, 1500), substr(q[[2]], 1800, 2000)),
+    "DNAStringSet"
+)
+q[3] <- as(
+    replaceAt(
+        q[[3]], 1500,
+        paste(rep("A", 1000), collapse = "")
+    ),
+    "DNAStringSet"
+)
 names(q) <- c("mismatches", "deletions", "insertion")
 names(s) <- substr(names(s)[1], 1, 34)
 
@@ -70,11 +79,12 @@ pl4
 library(ggplot2)
 
 pl4 +
-  ylab("Sequence variants") +
-  xlab("Length in bp") +
-  scale_color_viridis_d() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
-        axis.title = element_text())
-
+    ylab("Sequence variants") +
+    xlab("Length in bp") +
+    scale_color_viridis_d() +
+    theme(
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
+        axis.title = element_text()
+    )
 
 }
