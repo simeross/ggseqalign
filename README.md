@@ -12,6 +12,22 @@ I am currently working on a Bioconductor submission for this package, but it sho
 install.packages("devtools")
 devtools::install_git("https://github.com/simeross/ggseqalign.git")
 ```
+
+Until the next major version of Bioconductor (expected October 2024),
+`ggseqalign` can be installed from the `Devel` version of Bioconductor.
+
+```
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
+BiocManager::install(version = "devel")
+BiocManager::valid()              # checks for out of date packages
+BiocManager::install("ggseqalign")
+```
+See the 
+[BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html)
+vignette for instructions on using
+multiple versions of Bioconductor.
+
 ### earlier R versions
 If you use any R version older than `4.4.0`, install version 0.1.0 of this package.
 ```
