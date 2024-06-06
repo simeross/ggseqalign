@@ -145,8 +145,8 @@ alignment_table <- function(query = XStringSet,
                 names(query)
             )
         )) %>%
-        # start and end need to be adjusted so that each character 
-        # deletion is of width 1 centered on its number, e.g. 
+        # start and end need to be adjusted so that each character
+        # deletion is of width 1 centered on its number, e.g.
         # character deletion 4 is from 3.5-4.5
         mutate(
             start = start - 0.5,
