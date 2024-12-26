@@ -4,27 +4,22 @@
 This is an R package to perform pairwise alignments of strings and plot them in a minimal style that is suitable for strings/sequences of any length. It is compatible with ggplot2 and DNA/AA sequence objects from `Biostrings`.
 
 ## Installation
-### R version 4.4 and above
+
+### Bioconductor
+I recommend installing `ggseqalign` from Bioconductor.
+```
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("ggseqalign")
+```
+
+### GitHub (R version 4.4.0 and above)
 `ggseqalign` can be installed from its original source on GitHub (requires `devtools`).
 ```
 install.packages("devtools")
 devtools::install_git("https://github.com/simeross/ggseqalign.git")
 ```
-
-Until the next major version of Bioconductor (expected October 2024),
-`ggseqalign` can be installed from the `Devel` version of Bioconductor.
-
-```
-if (!requireNamespace("BiocManager", quietly=TRUE))
-    install.packages("BiocManager")
-BiocManager::install(version = "devel")
-BiocManager::valid()              # checks for out of date packages
-BiocManager::install("ggseqalign")
-```
-See the 
-[BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html)
-vignette for instructions on using
-multiple versions of Bioconductor.
 
 ### earlier R versions
 If you use any R version older than `4.4.0`, install version 0.1.0 of this package.
@@ -32,8 +27,6 @@ If you use any R version older than `4.4.0`, install version 0.1.0 of this packa
 install.packages("devtools")
 devtools::install_git("https://github.com/simeross/ggseqalign@e1a2e99ee7d079d2e4331bc101382cfebe125fa8")
 ```
-### Bioconductor
-This will be updated for installation instructions from Bioconductor if the submission is successful.
 
 ## Quick start
 All you need is this package and some strings to align and you are ready to go.

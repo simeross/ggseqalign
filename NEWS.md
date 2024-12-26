@@ -1,3 +1,6 @@
+## Changes in verions 1.0.0
+* Official Bioconductor release
+
 ## Changes in version 0.99.1
 
 * Changes addressing pre-release 
