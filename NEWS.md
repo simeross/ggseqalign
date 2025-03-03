@@ -1,3 +1,9 @@
+## Changes in verions 1.0.2
+* Updated installation instructions in Vignette to reflect Bioconductor release
+
+## Changes in verions 1.0.1
+* Updated installation instructions in README to reflect Bioconductor release
+
 ## Changes in verions 1.0.0
 * Official Bioconductor release
 

@@ -80,14 +80,12 @@ plot_sequence_alignment(alignment_table(q, s)) +
 
 # Installation
 
-Until the next major version of Bioconductor (expected October 2024),
-`ggseqalign` can be installed from the `Devel` version of Bioconductor.
+`ggseqalign` can be installed from Bioconductor.
 
 ```{r installbioc, eval = FALSE}
-if (!requireNamespace("BiocManager", quietly=TRUE))
+if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
-BiocManager::install(version = "devel")
-BiocManager::valid()              # checks for out of date packages
+
 BiocManager::install("ggseqalign")
 ```
 
