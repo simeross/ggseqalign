@@ -1,7 +1,7 @@
 Package: ggseqalign
 Type: Package
 Title: Minimal Visualization of Sequence Alignments
-Version: 1.1.0
+Version: 1.1.2
 Authors@R: person(
     "Simeon", "Lim Rossmann", 
     email = "simeon.rossmann@nmbu.no", 
